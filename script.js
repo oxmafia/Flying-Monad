@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.addEventListener('click', function () {
         // Simulate the spacebar key press
         simulateSpacebarPress();
+        console.log("flying");
     });
 
     // Function to simulate the spacebar key press
