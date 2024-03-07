@@ -1,3 +1,29 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // Add a click/tap event listener to the body
+    document.body.addEventListener('click', function () {
+        // Simulate the spacebar key press
+        simulateSpacebarPress();
+    });
+
+    // Function to simulate the spacebar key press
+    function simulateSpacebarPress() {
+        // Create a new KeyboardEvent for the 'keydown' event with the 'Space' key
+        var spaceKeyEvent = new KeyboardEvent('keydown', {
+            key: ' ',
+            code: 'Space',
+            which: 32,
+            keyCode: 32,
+            bubbles: true
+        });
+
+        // Dispatch the event to simulate the spacebar key press
+        document.dispatchEvent(spaceKeyEvent);
+    }
+});
+
+
+
+
 // Game variables
 var canvas = document.getElementById("gameCanvas");
 var retryButton = document.getElementById("retryButton");
