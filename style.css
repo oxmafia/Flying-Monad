@@ -1,0 +1,49 @@
+/* Common styles for both desktop and mobile */
+canvas {
+  background-color: #fecdff;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+/* Desktop mode */
+@media (min-width: 768px) {
+  canvas {
+      width: 40%;
+  }
+}
+
+/* Mobile mode */
+@media (max-width: 767px) {
+  canvas {
+      width: 90%;
+  }
+}
+
+
+h1, p {
+  text-align: center;
+}
+button {
+  margin: 2rem auto;
+  background: #ffb4f9;
+  color: #000000;
+  border: none;
+  border-radius: 50px;
+  font-size:large;
+  padding: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+
+body{
+  background-color: #da37ff ;
+  color:#ffffffbf;
+}
+.dev{
+  position: absolute;
+  bottom: 0px;
+  right:0px;
+  margin:8px;
+}
