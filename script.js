@@ -32,10 +32,10 @@ var ctx = canvas.getContext("2d");
 var birdX = 50;
 var birdY = canvas.height / 2;
 var birdSpeedY = 0;
-var gravity = 0.075;
-var jumpForce = 2;
+var gravity = 0.08;
+var jumpForce = 2.5;
 var obstacles = [];
-var obstacleWidth = 50;
+var obstacleWidth = 60;
 var minGapHeight = 100;
 var maxGapHeight = 200;
 var obstacleSpeedX = 1.5;
@@ -190,3 +190,4 @@ function restartGame() {
   retryButton.style.display = "none";
   gameLoop();
 }
+
