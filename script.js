@@ -1,29 +1,26 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Add a click/tap event listener to the body
-    document.body.addEventListener('click', function () {
-        // Simulate the spacebar key press
-        simulateSpacebarPress();
-        console.log("flying");
+document.addEventListener("DOMContentLoaded", function () {
+  // Add a click/tap event listener to the body
+  document.body.addEventListener("click", function () {
+    // Simulate the spacebar key press
+    simulateSpacebarPress();
+    console.log("flying");
+  });
+
+  // Function to simulate the spacebar key press
+  function simulateSpacebarPress() {
+    // Create a new KeyboardEvent for the 'keydown' event with the 'Space' key
+    var spaceKeyEvent = new KeyboardEvent("keydown", {
+      key: " ",
+      code: "Space",
+      which: 30,
+      keyCode: 30,
+      bubbles: true,
     });
 
-    // Function to simulate the spacebar key press
-    function simulateSpacebarPress() {
-        // Create a new KeyboardEvent for the 'keydown' event with the 'Space' key
-        var spaceKeyEvent = new KeyboardEvent('keydown', {
-            key: ' ',
-            code: 'Space',
-            which: 32,
-            keyCode: 32,
-            bubbles: true
-        });
-
-        // Dispatch the event to simulate the spacebar key press
-        document.dispatchEvent(spaceKeyEvent);
-    }
+    // Dispatch the event to simulate the spacebar key press
+    document.dispatchEvent(spaceKeyEvent);
+  }
 });
-
-
-
 
 // Game variables
 var canvas = document.getElementById("gameCanvas");
@@ -33,10 +30,10 @@ var birdX = 50;
 var birdY = canvas.height / 2;
 var birdSpeedY = 0;
 var gravity = 0.08;
-var jumpForce = 2.5;
+var jumpForce = 2.0;
 var obstacles = [];
 var obstacleWidth = 60;
-var minGapHeight = 100;
+var minGapHeight = 120;
 var maxGapHeight = 200;
 var obstacleSpeedX = 1.5;
 var score = 0;
@@ -87,7 +84,7 @@ function update() {
       obstacles[obstacles.length - 1].x < canvas.width - 200
     ) {
       var gapHeight = Math.floor(
-        Math.random() * (maxGapHeight - minGapHeight + 1) + minGapHeight
+        Math.random() * (maxGapHeight - minGapHeight + 1) + minGapHeight,
       );
       var topHeight = Math.floor(Math.random() * (canvas.height - gapHeight));
       var bottomY = topHeight + gapHeight;
@@ -96,12 +93,12 @@ function update() {
         topHeight: topHeight,
         gapHeight: gapHeight,
         bottomY: bottomY,
-        scored: false
+        scored: false,
       });
     }
 
     // Game over if bird touches the ground or goes off-screen
-    if (birdY + 50  > canvas.height || birdY < 0) {
+    if (birdY + 50 > canvas.height || birdY < 0) {
       gameOver();
     }
   }
@@ -113,12 +110,10 @@ function render() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Draw the bird
- // Load the GIF image
- var birdImage = new Image();
- birdImage.src = 'pepe.png'; // Replace with the actual path to your GIF image
- ctx.drawImage(birdImage, birdX, birdY, 50, 50);
- 
-
+  // Load the GIF image
+  var birdImage = new Image();
+  birdImage.src = "pepe.png"; // Replace with the actual path to your GIF image
+  ctx.drawImage(birdImage, birdX, birdY, 50, 50);
 
   // Draw the obstacles
   ctx.fillStyle = "#da37ff";
@@ -128,13 +123,13 @@ function render() {
       obstacles[i].x,
       obstacles[i].topHeight + obstacles[i].gapHeight,
       obstacleWidth,
-      canvas.height - obstacles[i].topHeight - obstacles[i].gapHeight
+      canvas.height - obstacles[i].topHeight - obstacles[i].gapHeight,
     );
   }
 
   // Draw the score
   ctx.fillStyle = "white";
-  ctx.fillRect(6,11, 120, 23);
+  ctx.fillRect(6, 11, 120, 23);
 
   ctx.fillStyle = "purple";
   ctx.font = "24px Arial";
@@ -143,11 +138,11 @@ function render() {
   // Game over text
   if (isGameOver) {
     ctx.fillStyle = "white";
-    ctx.fillRect( canvas.width / 2 - 100, canvas.height / 2, 200, 50);
+    ctx.fillRect(canvas.width / 2 - 100, canvas.height / 2, 200, 50);
 
     ctx.fillStyle = "black";
     ctx.font = "36px Arial";
-    ctx.fillText("Game Over!", canvas.width / 2 - 100, (canvas.height / 2)+36);
+    ctx.fillText("Game Over!", canvas.width / 2 - 100, canvas.height / 2 + 36);
     retryButton.style.display = "block";
   } else {
     retryButton.style.display = "none";
@@ -190,4 +185,3 @@ function restartGame() {
   retryButton.style.display = "none";
   gameLoop();
 }
-
